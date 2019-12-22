@@ -5,6 +5,9 @@ import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
+import { ToastrService } from 'ngx-toastr';
+
+
 
 const log = new Logger('Login');
 
@@ -24,7 +27,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private i18nService: I18nService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService
   ) {
     this.createForm();
   }
@@ -58,6 +62,8 @@ export class LoginComponent implements OnInit {
         }
       );
       this.authuser=true;
+      this.toastr.success('Logged In as: ' +this.loginForm.value.username, 'Login success');
+
   }
   else
   {

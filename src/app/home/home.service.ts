@@ -12,7 +12,7 @@ constructor(private httpClient: HttpClient) {}
 
 GenerateQuery(data: any) {
     return this.httpClient
-      .post('Save_storedata', {"data":data})
+      .post('GenerateQuery', {"data":data})
       .pipe(
         map((body: any) => {
           if (body) {

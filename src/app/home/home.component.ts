@@ -36,18 +36,44 @@ export class HomeComponent implements OnInit {
 
    public proxy: any[] = ['Unsecured', 'secured', 
                                 'Auto Loan','Mortage','Home Equity','Credit Union','Mtf Loan','Student Loan'];                                
-   Rejectid:any='ascend'; 
-   Outputid:any='ascend';  
+  
+ 
+  /*GENERAL*/
+Rejectid:any='ascend'; 
+Outputid:any='ascend';  
+RejectTableName:any;
+OutputTableName:any;
+
+StartDate: NgbDateStruct;
+EndDate: NgbDateStruct;
+
+
+BaseMonth:any;
    prxy1:any='Unsecured';
    prxy2:any='secured'; 
-   AdvRejectId:any='';  
-   advsaved:boolean=false;                                                     
+
+  
+  /*Advance Settings*/
+AdvRejectId:any; 
+AdvRejectDate:any;
+AdvPublicrec:any='1';
+AdvCollectionrec:any='1';
+AdvHostName:any;
+AdvWinBefore:any='1';
+AdvWinAfter:any='1';
+FilteredStartdt:any;
+FilteredEnddt:any;
+AdvPerformanceval:any='1';
+AdvBadefinition:any='0 DPD'; 
+advsaved:boolean=false;    
+
+
                           
   @ViewChild('div') div: ElementRef;
 
 
 
-  constructor(private formBuilder: FormBuilder,private renderer: Renderer2,private toastr: ToastrService,private modalService: NgbModal) {}
+  constructor(private formBuilder: FormBuilder,private homeservice: HomeService,private renderer: Renderer2,private toastr: ToastrService,private modalService: NgbModal) {}
 
   ngOnInit() {
    
@@ -84,5 +110,61 @@ savemodal()
   this.toastr.success('Settings saved successfully!', 'Advanced settings');
 
 }
+radiopublicChange(event:any){
+console.log(this.AdvPublicrec);
+
+}
+radiocollectionChange(event:any){
+console.log(this.AdvCollectionrec);
+
+}
+Submit(){
+
+console.log(this.Rejectid +
+this.Outputid +
+this.RejectTableName +
+this.OutputTableName  +
+this.BaseMonth);
+
+if(this.StartDate)
+{
+this.FilteredStartdt=this.StartDate.year +'-'+this.StartDate.month+'-'+this.StartDate.day;
+}
+
+if(this.EndDate)
+{
+this.FilteredEnddt=this.EndDate.year +'-'+this.EndDate.month+'-'+this.EndDate.day;
+}
+
+console.log(this.FilteredStartdt);
+console.log(this.FilteredEnddt);
+
+console.log(this.AdvRejectId +
+this.AdvRejectDate +
+this.AdvPublicrec +
+this.AdvCollectionrec +
+this.AdvHostName +
+this.AdvWinBefore +
+this.AdvWinAfter +
+this.AdvPerformanceval +
+this.AdvBadefinition)
+
+
+let data: any =  {
+                  reject_table_name: this.RejectTableName,
+                  reject_date_col:this.AdvRejectId
+                 }
+this.homeservice.GenerateQuery(data).subscribe((apiresponse:any) => {
+  console.log(data);
+if(apiresponse.query=="Success")
+{
+    this.toastr.success('Data Saved Successfully !', 'Success');
+}
+else
+{
+}
+
+})
+
 
 }
