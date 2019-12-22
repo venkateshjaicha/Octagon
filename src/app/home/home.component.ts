@@ -48,11 +48,7 @@ export class HomeComponent implements OnInit {
     req_base_month: boolean = false;
     req_start_date: boolean = false;
     req_end_date: boolean = false;
-    anArrays:any=[{
-            'proxy1': 'Unsecured',
-        },{
-            'proxy1': 'secured',
-        }];
+    anArrays:any=['Unsecured','secured'];
 
 
 
@@ -149,22 +145,22 @@ export class HomeComponent implements OnInit {
         this.count = this.count + 1;
 
         if(this.count == 3){
-           this.anArrays.push({'proxy1': 'Auto Loan'});
+           this.anArrays.push('Auto Loan');
         }
         else if(this.count == 4){
-           this.anArrays.push({'proxy1': 'Mortage'});
+           this.anArrays.push('Mortage');
         }
         else if(this.count == 5){
-           this.anArrays.push({'proxy1': 'Home Equity'});
+           this.anArrays.push('Home Equity');
         }
         else if(this.count == 6){
-           this.anArrays.push({'proxy1': 'Credit Union'});
+           this.anArrays.push('Credit Union');
         }
           else if(this.count == 7){
-           this.anArrays.push({'proxy1': 'Mtf Loan'});
+           this.anArrays.push('Mtf Loan');
         }
        else if(this.count == 8){
-           this.anArrays.push({'proxy1': 'Student Loan'});
+           this.anArrays.push('Student Loan');
         }
        
 
@@ -180,8 +176,8 @@ OnSelectchange(index:any){
   
 for(let i = 0;i<this.anArrays.length;i++){
   if(i != index){
-  if(this.anArrays[index].proxy1 == this.anArrays[i].proxy1){
-    this.anArrays[i].proxy1 = ''
+  if(this.anArrays[index] == this.anArrays[i]){
+    this.anArrays[i] = ''
     return
   }
 }
@@ -199,7 +195,6 @@ for(let i = 0;i<this.anArrays.length;i++){
         }
        }
     Submit() {
-
 
         if (this.RejectTableName != '') {
             this.req_reject_tablename = false;
@@ -229,13 +224,6 @@ for(let i = 0;i<this.anArrays.length;i++){
         }
 
 
-
-        console.log(this.Rejectid +
-            this.Outputid +
-            this.RejectTableName +
-            this.OutputTableName +
-            this.BaseMonth);
-
         if (this.StartDate) {
             this.FilteredStartdt = this.StartDate.year + '-' + this.StartDate.month + '-' + this.StartDate.day;
         }
@@ -243,27 +231,35 @@ for(let i = 0;i<this.anArrays.length;i++){
         if (this.EndDate) {
             this.FilteredEnddt = this.EndDate.year + '-' + this.EndDate.month + '-' + this.EndDate.day;
         }
+        var proxyobj = {};
+       for (var i = 0 ; i < this.anArrays.length; i++) {
+      proxyobj["proxy" + (i+1)] = this.anArrays[i];
+          }
 
-        console.log(this.FilteredStartdt);
-        console.log(this.FilteredEnddt);
-
-        console.log(this.AdvRejectId +
-            this.AdvRejectDate +
-            this.AdvPublicrec +
-            this.AdvCollectionrec +
-            this.AdvHostName +
-            this.AdvWinBefore +
-            this.AdvWinAfter +
-            this.AdvPerformanceval +
-            this.AdvBadefinition)
+        //console.log(proxyobj);
 
         if (this.RejectTableName && this.OutputTableName && this.StartDate && this.EndDate && this.BaseMonth) {
             let data: any = {
                 reject_table_name: this.RejectTableName,
-                reject_date_col: this.AdvRejectId
+                reject_directory_col: this.Rejectid,
+                output_table_name: this.OutputTableName,
+                output_directory_name: this.Outputid,
+                start_date: this.FilteredStartdt,
+                end_date: this.FilteredEnddt,
+                base_month: this.BaseMonth,
+                proxy:proxyobj,
+                adv_reject_unique_id:this.AdvRejectId,
+                adv_reject_date_col:this.AdvRejectDate,
+                adv_public_rec:this.AdvPublicrec,
+                adv_collection_rec:this.AdvCollectionrec,
+                adv_host_name:this.AdvHostName,
+                adv_before_appln:this.AdvWinBefore,
+                adv_after_appln:this.AdvWinAfter,
+                adv_performance_win:this.AdvPerformanceval,
+                adv_bad_def:this.AdvBadefinition,
             }
+                        console.log(data);
             this.homeservice.GenerateQuery(data).subscribe((apiresponse: any) => {
-                console.log(data);
                 if (apiresponse.query == "Success") {
                     this.toastr.success('Data Saved Successfully !', 'Success');
                 } else {}

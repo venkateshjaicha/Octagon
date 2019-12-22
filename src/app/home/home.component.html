@@ -98,7 +98,7 @@
 <div class="col-md-2 margin-left">
 <div class="proxy input-group">
 <label class="custom-lbl" >Proxy {{i + 1}}</label>
-<select id="prxy1" class="form-control inpt-cmn" (change)="OnSelectchange(i);" placeholder="Select Directory" [(ngModel)]="anArrays[i].proxy1">
+<select id="prxy1" class="form-control inpt-cmn" (change)="OnSelectchange(i);" placeholder="Select Directory" [(ngModel)]="anArrays[i]">
 <option *ngFor="let prx of proxy" [value]="prx">
 {{prx}}
 </option>
