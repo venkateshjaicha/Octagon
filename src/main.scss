@@ -1,0 +1,61 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
+@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+
+// Theme customization
+@import "theme/theme";
+
+ body {
+  font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+  color: #fff;
+  background: #0F90FF !important;
+}
+
+#reject-select .ngx-select{
+	left: 10px !important;
+    width: 205px !important;
+
+}
+#reject-select .form-control{
+	 border-color: #000 !important;
+}
+
+div .proxy12 {
+	width:195px;
+}
+
+/*Modal Box*/
+.AdvcnModal .modal-dialog {
+max-width: 1015px !important;
+}
+
+.fade.in {
+  opacity: 1;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-backdrop .fade .in {
+  opacity: 0.5 !important;
+}
+
+
+.modal-backdrop.fade {
+    opacity: 0.5 !important;
+}

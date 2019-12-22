@@ -1,0 +1,22 @@
+<body id="Loginbody">
+ <div style="margin-top:60px"> <h3 style="text-align: center;">Bureau Inference Tool </h3></div>
+<div class="login">
+  <h1>Sign In</h1>
+  <form method="post" action="" [formGroup]="loginForm" (ngSubmit)="login()">
+    <p><input type="text" name="login" formControlName="username" value="" [placeholder]="'Username' | translate"></p>
+    <span hidden translate>Username</span>
+                <small [hidden]="loginForm.controls.username.valid || loginForm.controls.username.untouched"
+                       class="text-danger" translate>
+                  Username is required
+                </small>
+    <p><input type="password" name="password" value="" formControlName="password"  [placeholder]="'Password' | translate" required></p>
+    <small [hidden]="loginForm.controls.password.valid || loginForm.controls.password.untouched"
+                       class="text-danger" translate>
+                  Password is required
+                </small>
+        <p class="submit"><input type="submit" name="commit" value="Sign In" [disabled]="loginForm.invalid || isLoading"></p>
+<p style="text-align: center;color:red" [hidden]=authuser>Username or Password incorrect!<p>
+  </form>
+</div>
+
+</body>

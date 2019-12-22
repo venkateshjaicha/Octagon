@@ -1,0 +1,245 @@
+<div class="container">
+<div class="card">
+<div class="card-body">
+<div class="row">
+<div class="col-md-12">
+<button type="button" class="btn advance-settingbtn" (click)="AdvancedSetting(content);"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Advanced Settings</button>
+</div>
+</div>
+<div class="row content-div">
+<div class="col-md-12 text-center"><h5 class="divheader">Reject Table Information</h5></div>
+<div class="col-md-5 margin-left">
+<div class="input-group">
+<label class="custom-lbl">Reject Directory Name</label>
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" [(ngModel)]="Rejectid" >
+	<option *ngFor="let rejedir of RejectDirName" [value]="rejedir">
+      {{rejedir}}
+    </option>
+</select>                 
+</div>
+</div>
+<div class="col-md-4 margin-left">
+<div class="input-group">
+
+<label class="custom-lbl">Reject Table Name</label>
+<input  type="text" class="inpt-cmn form-control" placeholder="ca_bi_c53012a_rejects">
+</div>
+
+</div>
+</div>
+<div class="row content-div">
+<div class="col-md-12 text-center"><h5 class="divheader">Output Table Information</h5></div>
+<div class="col-md-5 margin-left">
+<div class="input-group">
+<label class="custom-lbl">Output Directory Name</label>
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" [(ngModel)]="Outputid" >
+	<option *ngFor="let outdir of OutputDirName" [value]="outdir">
+      {{outdir}}
+    </option>
+</select>    
+</div>
+</div>
+<div class="col-md-4 margin-left">
+<div class="input-group">
+
+<label class="custom-lbl">Output Table Name</label>
+<input  type="text" class="inpt-cmn form-control" placeholder="ca_bi_c53012a_rejects">
+</div>
+
+</div>
+</div>
+<div class="row content-div">
+<div class="col-md-12 text-center"><h5 class="divheader">Date Information</h5></div>
+<div class="col-md-3 margin-left">
+<div class="input-group">
+<label class="custom-lbl">Start Date</label>
+<input class="inpt-cmn form-control" placeholder="yyyy-mm-dd" readonly
+name="startdt" [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" [placement]="'top'" (dateSelect)="StartDate($event)" >        
+<button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" style="top:8px;box-shadow: none;" type="button"></button>
+
+ </div>
+</div>
+<div class="col-md-3 margin-left">
+<div class="input-group">
+<label class="custom-lbl">End Date</label>
+<input class="inpt-cmn form-control" placeholder="yyyy-mm-dd" readonly
+name="startdt" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" [placement]="'top'" (dateSelect)="StartDate($event)" >        
+<button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" style="top:8px;box-shadow: none;" type="button"></button>
+
+ </div>
+</div>
+<div class="col-md-3 margin-left">
+<div class="input-group">
+
+<label class="custom-lbl">Base Month</label>
+<input  type="text" class="inpt-cmn form-control" >
+</div>
+
+
+</div>
+</div>
+<div class="row content-div">
+<div class="col-md-12 text-center"><h5 class="divheader" style="padding-left: 130px;">Hierarchy Information
+<button type="button" class="btn advance-settingbtn"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp;Add Proxy</button>
+</h5>
+
+
+</div>
+<div class="col-md-2 margin-left">
+<div class="proxy12 input-group">
+<label class="custom-lbl">Proxy 1</label>
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" [(ngModel)]="prxy1" >
+	<option *ngFor="let prx of proxy" [value]="prx">
+      {{prx}}
+    </option>
+</select>                 
+</div>
+</div>
+<div class="col-md-2 margin-left">
+<div class="proxy12 input-group">
+<label class="custom-lbl">Proxy 2</label>
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" [(ngModel)]="prxy2" >
+	<option *ngFor="let prx of proxy" [value]="prx">
+      {{prx}}
+    </option>
+</select>                 
+</div>
+</div>
+</div>
+</div>
+</div>
+<ng-template #content let-modal>
+<div class="modal-header">
+<h5 class="modal-title modalfeaturetitle" id="modal-basic-title">Advanced Settings</h5>
+</div>
+<div class="modal-body" >
+<div class="row">
+<div class="col-md-4 margin-left">
+<div class="input-group">
+
+<label class="custom-lbl">Reject Unique Id</label>
+<input  type="text" class="inpt-cmn form-control" [(ngModel)]="AdvRejectId">
+</div>
+
+</div>
+<div class="col-md-4 margin-left">
+<div class="input-group">
+
+<label class="custom-lbl">Reject Date Column</label>
+<input  type="text" class="inpt-cmn form-control">
+</div>
+
+
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 margin-left" style="margin-top: 1rem;">
+<label class="custom-lbl">Use Public Records</label>
+<mat-radio-group aria-label="Select an option" style="margin-left: 10px;" (change)="radioChange($event)">
+<mat-radio-button [checked]=true value="1"><span style="color:#000;">Yes</span></mat-radio-button>
+<mat-radio-button value="2"><span style="color:#000;">No</span></mat-radio-button>
+</mat-radio-group>
+</div>
+
+<div class="col-md-5 margin-left" style="margin-top: 1rem;">
+<label class="custom-lbl">Use Collection Records</label>
+<mat-radio-group aria-label="Select an option" style="margin-left: 10px;" (change)="radioChange($event)">
+<mat-radio-button [checked]=true value="1"><span style="color:#000;">Yes</span></mat-radio-button>
+<mat-radio-button value="2"><span style="color:#000;">No</span></mat-radio-button>
+</mat-radio-group>
+</div>
+
+</div>
+
+<div class="row">
+<div class="col-md-4 margin-left">
+<div class="input-group" style="left: 35px;margin-top: 10px;">
+<label class="custom-lbl">Host Name</label>
+<input  type="text" class="inpt-cmn form-control">
+</div>
+</div>
+</div>
+
+
+<div class="row" style="margin-top: 20px;">
+<div class="col-md-4 margin-left" style="left: 105px;">
+<label class="custom-lbl">New trade open window months before application date</label>
+
+</div>	
+
+<div class="col-md-2" style="left: 75px;">
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" >
+	<option *ngFor="let winbefore of winbeforeappln" [value]="winbefore">
+      {{winbefore}}
+    </option>
+</select>   
+</div>	
+</div>
+<div class="row" style="margin-top: 20px;">
+<div class="col-md-4 margin-left" style="left: 105px;">
+<label class="custom-lbl">New trade open window months after application date</label>
+
+</div>	
+
+<div class="col-md-2" style="left: 75px;">
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" >
+	<option *ngFor="let winafter of winafterappln" [value]="winafter">
+      {{winafter}}
+    </option>
+</select>   
+</div>	
+</div>
+
+<div class="row" style="margin-top: 20px;">
+<div class="col-md-4 margin-left" style="left: 105px;">
+<label class="custom-lbl">Mininimum Months to be qualified as good(Performance window)</label>
+
+</div>	
+
+<div class="col-md-2" style="left: 75px;">
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" >
+	<option *ngFor="let performance of performancewin" [value]="performance">
+      {{performance}}
+    </option>
+</select>   
+</div>	
+</div>
+
+<div class="row" style="margin-top: 20px;">
+<div class="col-md-4 margin-left" style="left: 105px;">
+<label class="custom-lbl">Bad Definition(Worst Ever)</label>
+
+</div>	
+
+<div class="col-md-2" style="left: 75px;">
+<select id="reject-select" class="form-control inpt-cmn" 
+placeholder="Select Directory" >
+	<option *ngFor="let baddef of badefinition" [value]="baddef">
+      {{baddef}}
+    </option>
+</select>   
+</div>	
+</div>
+
+<div class="row">
+<div class="col-md-4" style="left: 50px;">
+<button type="button" class="btn cancel" (click)="closemodal();" style="float: left">Cancel</button>
+</div>
+<div class="col-md-5" style="left: 55px;">
+<button type="button" class="btn adv-save" (click)="savemodal();" style="float: right">Save</button>
+</div>
+
+</div>	
+
+</div>
+</ng-template>
+
+</div>
+

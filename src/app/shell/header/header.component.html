@@ -1,0 +1,36 @@
+<header>
+<nav class="bg-black navbar-expand-lg navbar-dark bg-dark">
+<div class="container-fluid">
+<div class="row text-center">
+<div class="col-md-3">
+     
+<img class="logo" src="assets/images/experian.jpg" alt="experian" />
+
+   
+</div>
+<div class="col-md-6">
+<span class="head-text"><h1 class="navbar-brand" translate>Bureau Inference Tool</h1></span>
+</div>
+<div class="col-md-3">
+<div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="menuHidden">
+<div class="navbar-nav ml-auto">      
+<div class="nav-item" ngbDropdown placement="bottom-right">
+<a id="user-dropdown" class="nav-link" ngbDropdownToggle>
+<i class="fas fa-user-circle" id="user-circle"></i>
+</a>
+<div ngbDropdownMenu aria-labelledby="user-dropdown">
+<h6 class="dropdown-header">
+<span translate class="dropdown-item">Logged in as</span> <span style="padding-left: 45px;"><b>{{username}}</b></span></h6>
+<div class="dropdown-divider"></div>
+<button class="dropdown-item" (click)="logout()" translate>Logout</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+
+

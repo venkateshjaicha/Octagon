@@ -1,0 +1,129 @@
+.logo {
+  width: 240px;
+  height:140px
+}
+
+q {
+  font-style: italic;
+  font-size: 1.2rem;
+  quotes: "« " " »";
+}
+
+.card{
+	margin-top:3rem;
+}
+
+.advance-settingbtn{
+	color: #fff;
+    background: #00A8FF;
+    float: right;
+    margin-top: 5px;
+}
+
+.cancel{
+	color: #fff;
+    background: #00A8FF;
+    float: left;
+    width: 110px;
+    margin-top: 5px;
+}
+
+.adv-save{
+	color: #fff;
+    background: #00A8FF;
+    float: right;
+    width: 110px;
+    margin-top: 5px;
+}
+.custom-lbl{
+	color: #000;
+}
+
+.content-div{
+	border: 1px solid #000;
+    margin-top: 20px;
+    height: 130px;
+    background: whitesmoke;
+}
+
+.inpt-cmn{
+	left:10px;
+}
+
+.margin-left{
+	margin-left: 4rem;
+}
+.outpt-dir-margin-left{
+	margin-left: 10rem;
+}
+.outpt-tbl-margin-left{
+	margin-left: 0;
+}
+.divheader{
+	margin-top: 10px;
+	color: #000;
+}
+
+
+/*Date picker*/
+button.calendar {
+    width: 55px;
+    background-image: url("assets/images/calendar.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: 25px !important;
+    background-position: center !important;
+    height: 37px;
+    border-color: #000;
+}
+.form-control{
+	border-color: #000 !important;
+}
+
+
+.aligndate{
+top: 8px;
+background-color:#fff;
+}
+/*Date picker*/
+
+
+/*Modal box */
+.modal-title {
+color: #fff !important;
+}
+
+.modal-header {
+background-color: #007BFF !important;
+}
+
+.modal-body {
+background-color: #fff !important;
+}
+.modalfeaturetitle{
+font-size: 16px !important;
+margin-left: 445px !important;
+}
+
+
+/*Modal box */
+
+.mat-radio-button ~ .mat-radio-button {
+margin-left: 30px;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+background-color: #2e91fb!important;   /*inner circle color change*/
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+border-color:#2e91fb!important; /*outer ring color change*/
+}
+
+::ng-deep.mat-radio-outer-circle {
+border-color:#2e91fb!important; /*outer ring color change*/
+}
+
+table.mat-table {
+border-spacing: 0 !important;
+width: 100%;
+}
