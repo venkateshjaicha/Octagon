@@ -74,7 +74,7 @@ button.calendar {
   border-color: #000;
 }
 
-button.close {
+button.select-close {
   width: 32px;
   background-image: url("assets/images/closed.png") !important;
   background-repeat: no-repeat !important;
@@ -82,6 +82,8 @@ button.close {
   background-position: center !important;
   height: 14px;
   border-color: #000;
+  border: none;
+  background-color:#fff;
 }
 
 

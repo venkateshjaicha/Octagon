@@ -64,8 +64,8 @@ export class HomeComponent implements OnInit {
     /*Advance Settings*/
     AdvRejectId: any = '';
     AdvRejectDate: any = '';
-    AdvPublicrec: any = '1';
-    AdvCollectionrec: any = '1';
+    AdvPublicrec: any = 'Y';
+    AdvCollectionrec: any = 'Y';
     AdvHostName: any = '';
     AdvWinBefore: any = '';
     AdvWinAfter: any = '';
@@ -88,7 +88,6 @@ export class HomeComponent implements OnInit {
     }
 
     onChange(event: any) {
-        console.log(event.item1.value);
         if (event != '') {
             this.requiredall = false;
         } else {
@@ -118,10 +117,13 @@ export class HomeComponent implements OnInit {
 
     closemodal() {
         this.modalService.dismissAll();
-        if (this.advsaved == false) {
             this.AdvRejectId = '';
-        }
-
+            this.AdvRejectDate ='';
+            this.AdvHostName ='';
+            this.AdvWinBefore ='';
+            this.AdvWinAfter ='';
+            this.AdvPerformanceval ='';
+            this.AdvBadefinition ='';
     }
 
     savemodal() {
@@ -131,11 +133,9 @@ export class HomeComponent implements OnInit {
 
     }
     radiopublicChange(event: any) {
-        console.log(this.AdvPublicrec);
 
     }
     radiocollectionChange(event: any) {
-        console.log(this.AdvCollectionrec);
 
     }
 
@@ -184,7 +184,6 @@ for(let i = 0;i<this.anArrays.length;i++){
 }
 }
     Removeproxys(i:any) {
-      console.log(i);
         this.count = this.count - 1;
         this.anArrays.splice(i, 1);
         if(this.count == 8){

@@ -98,12 +98,12 @@
 <div class="col-md-2 margin-left">
 <div class="proxy input-group">
 <label class="custom-lbl" >Proxy {{i + 1}}</label>
-<select id="prxy1" class="form-control inpt-cmn" (change)="OnSelectchange(i);" placeholder="Select Directory" [(ngModel)]="anArrays[i]">
+<select id="prxy1" class="form-control inpt-cmn" (change)="OnSelectchange(i);" [(ngModel)]="anArrays[i]">
 <option *ngFor="let prx of proxy" [value]="prx">
 {{prx}}
 </option>
 </select>
-<button class="close" *ngIf="i >= 2" (click)="Removeproxys(i)" style="top:8px;box-shadow: none;" type="button"></button>
+<button class="select-close" *ngIf="i >= 2" (click)="Removeproxys(i)" style="top:8px;box-shadow: none;" type="button"></button>
 </div>
 </div>
 </ng-container>
@@ -120,6 +120,9 @@
 <ng-template #content let-modal>
 <div class="modal-header">
 <h5 class="modal-title modalfeaturetitle" id="modal-basic-title">Advanced Settings</h5>
+<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+<span aria-hidden="true">&times;</span>
+</button>
 </div>
 <div class="modal-body">
 <div class="row">
@@ -145,16 +148,16 @@
 <div class="col-md-4 margin-left" style="margin-top: 1rem;">
 <label class="custom-lbl">Use Public Records</label>
 <mat-radio-group aria-label="Select an option" style="margin-left: 10px;" [(ngModel)]="AdvPublicrec" (change)="radiopublicChange($event)">
-<mat-radio-button [checked]=true value="1"><span style="color:#000;">Yes</span></mat-radio-button>
-<mat-radio-button value="2"><span style="color:#000;">No</span></mat-radio-button>
+<mat-radio-button [checked]=true value="Y"><span style="color:#000;">Yes</span></mat-radio-button>
+<mat-radio-button value="N"><span style="color:#000;">No</span></mat-radio-button>
 </mat-radio-group>
 </div>
 
 <div class="col-md-5 margin-left" style="margin-top: 1rem;">
 <label class="custom-lbl">Use Collection Records</label>
 <mat-radio-group aria-label="Select an option" style="margin-left: 10px;" [(ngModel)]="AdvCollectionrec" (change)="radiocollectionChange($event)">
-<mat-radio-button [checked]=true value="1"><span style="color:#000;">Yes</span></mat-radio-button>
-<mat-radio-button value="2"><span style="color:#000;">No</span></mat-radio-button>
+<mat-radio-button [checked]=true value="Y"><span style="color:#000;">Yes</span></mat-radio-button>
+<mat-radio-button value="N"><span style="color:#000;">No</span></mat-radio-button>
 </mat-radio-group>
 </div>
 
