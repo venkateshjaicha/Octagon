@@ -12,7 +12,7 @@ constructor(private httpClient: HttpClient) {}
 
 GenerateQuery(data: any) {
     return this.httpClient
-      .post('GenerateQuery', {"data":data})
+      .post('generate_query', {"data":data})
       .pipe(
         map((body: any) => {
           if (body) {

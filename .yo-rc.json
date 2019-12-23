@@ -3,7 +3,7 @@
     "version": "5.3.0",
     "props": {
       "location": "path",
-      "appName": "K7",
+      "appName": "Experian",
       "target": [
         "web"
       ],
@@ -13,7 +13,7 @@
       "lazy": true,
       "angulartics": false,
       "prettier": true,
-      "projectName": "k-7",
+      "projectName": "experian",
       "packageManager": "npm",
       "mobile": []
     }
