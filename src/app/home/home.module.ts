@@ -8,19 +8,26 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HomeService } from './home.service';
 import { NgxSelectModule } from 'ngx-select-ex';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatRadioModule } from '@angular/material/radio';
 
-
-
-
-
 @NgModule({
-  imports: [CommonModule, TranslateModule,FormsModule, 
-  ReactiveFormsModule , BrowserModule,CoreModule, SharedModule,NgbModule,MatRadioModule, HomeRoutingModule,NgxSelectModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    CoreModule,
+    SharedModule,
+    NgbModule,
+    MatRadioModule,
+    HomeRoutingModule,
+    NgxSelectModule
+  ],
   declarations: [HomeComponent],
   providers: [HomeService]
 })

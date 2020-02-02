@@ -5,30 +5,22 @@ import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class HomeService {
-constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
-
-
-
-GenerateQuery(data: any) {
-    return this.httpClient
-      .post('generate_query', {"data":data})
-      .pipe(
-        map((body: any) => {
+  GenerateQuery(data: any) {
+    return this.httpClient.post('generate_query', { data: data }).pipe(
+      map((body: any) => {
+        if (body) {
           if (body) {
-            if (body) {
-              return body;
-            } else {
-              return {};
-            }
+            return body;
           } else {
             return {};
           }
-        }),
-        catchError(() => of([]))
-      );
+        } else {
+          return {};
+        }
+      }),
+      catchError(() => of([]))
+    );
   }
-
-
-
 }

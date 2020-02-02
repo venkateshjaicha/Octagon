@@ -7,8 +7,6 @@ import { environment } from '@env/environment';
 import { Logger, I18nService, AuthenticationService } from '@app/core';
 import { ToastrService } from 'ngx-toastr';
 
-
-
 const log = new Logger('Login');
 
 @Component({
@@ -21,7 +19,7 @@ export class LoginComponent implements OnInit {
   error: string;
   loginForm: FormGroup;
   isLoading = false;
-  authuser =true;
+  authuser = true;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -38,38 +36,34 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.loginForm.value);
 
-    if(this.loginForm.value.username=='admin' && this.loginForm.value.password=="12345")
-    {
-    this.isLoading = true;
-    this.authenticationService
-      .login(this.loginForm.value)
-      .pipe(
-        finalize(() => {
-          this.loginForm.markAsPristine();
-          this.isLoading = false;
-        })
-      )
-      .subscribe(
-        credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
-          this.route.queryParams.subscribe(params =>
-            this.router.navigate([params.redirect || '/'], { replaceUrl: true })
-          );
-        },
-        error => {
-          log.debug(`Login error: ${error}`);
-          this.error = error;
-        }
-      );
-      this.authuser=true;
-      this.toastr.success('Logged In as: ' +this.loginForm.value.username, 'Login success');
-
+    if (this.loginForm.value.username == 'admin' && this.loginForm.value.password == '12345') {
+      this.isLoading = true;
+      this.authenticationService
+        .login(this.loginForm.value)
+        .pipe(
+          finalize(() => {
+            this.loginForm.markAsPristine();
+            this.isLoading = false;
+          })
+        )
+        .subscribe(
+          credentials => {
+            log.debug(`${credentials.username} successfully logged in`);
+            this.route.queryParams.subscribe(params =>
+              this.router.navigate([params.redirect || '/'], { replaceUrl: true })
+            );
+          },
+          error => {
+            log.debug(`Login error: ${error}`);
+            this.error = error;
+          }
+        );
+      this.authuser = true;
+      this.toastr.success('Logged In as: ' + this.loginForm.value.username, 'Login success');
+    } else {
+      this.authuser = false;
+    }
   }
-  else
-  {
-    this.authuser=false;
-  }
-}
 
   setLanguage(language: string) {
     this.i18nService.language = language;

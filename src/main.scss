@@ -12,35 +12,32 @@
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss";
 @import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss";
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 // Theme customization
 @import "theme/theme";
 
- body {
+body {
   font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
   color: #fff;
-  background: #0F90FF !important;
+  background: #0f90ff !important;
 }
 
-#reject-select .ngx-select{
-	left: 10px !important;
-    width: 205px !important;
-
+#reject-select .ngx-select {
+  left: 10px !important;
+  width: 205px !important;
 }
-#reject-select .form-control{
-	 border-color: #000 !important;
-}
-
-div .proxy{
-	width:222px;
+#reject-select .form-control {
+  border-color: #000 !important;
 }
 
+div .proxy {
+  width: 222px;
+}
 
 /*Modal Box*/
 .AdvcnModal .modal-dialog {
-max-width: 1015px !important;
+  max-width: 1015px !important;
 }
 
 .fade.in {
@@ -56,7 +53,6 @@ max-width: 1015px !important;
   opacity: 0.5 !important;
 }
 
-
 .modal-backdrop.fade {
-    opacity: 0.5 !important;
+  opacity: 0.5 !important;
 }

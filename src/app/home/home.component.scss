@@ -1,30 +1,29 @@
 .logo {
   width: 240px;
-  height: 140px
+  height: 140px;
 }
 
 q {
   font-style: italic;
   font-size: 1.2rem;
-  quotes: "« "" »";
+  quotes: "« " " »";
 }
 
 .card {
   margin-top: 3rem;
   margin-bottom: 3rem;
-
 }
 
 .advance-settingbtn {
   color: #fff;
-  background: #00A8FF;
+  background: #00a8ff;
   float: right;
   margin-top: 5px;
 }
 
 .custombtn {
   color: #fff;
-  background: #00A8FF;
+  background: #00a8ff;
   float: left;
   width: 110px;
   margin-top: 5px;
@@ -62,7 +61,6 @@ q {
   color: #000;
 }
 
-
 /*Date picker*/
 button.calendar {
   width: 55px;
@@ -83,14 +81,12 @@ button.select-close {
   height: 14px;
   border-color: #000;
   border: none;
-  background-color:#fff;
+  background-color: #fff;
 }
-
 
 .form-control {
   border-color: #000 !important;
 }
-
 
 .aligndate {
   top: 8px;
@@ -99,14 +95,13 @@ button.select-close {
 
 /*Date picker*/
 
-
 /*Modal box */
 .modal-title {
   color: #fff !important;
 }
 
 .modal-header {
-  background-color: #007BFF !important;
+  background-color: #007bff !important;
 }
 
 .modal-body {
@@ -118,10 +113,9 @@ button.select-close {
   margin-left: 445px !important;
 }
 
-
 /*Modal box */
 
-.mat-radio-button~.mat-radio-button {
+.mat-radio-button ~ .mat-radio-button {
   margin-left: 30px;
 }
 

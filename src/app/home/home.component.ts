@@ -1,273 +1,155 @@
-import { Component, OnInit,Renderer2,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder,FormGroup, FormControl, FormsModule, ReactiveFormsModule ,Validators, FormArray  } from '@angular/forms';
-import {NgbDateStruct, NgbCalendar ,NgbDate} from '@ng-bootstrap/ng-bootstrap';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+  FormArray
+} from '@angular/forms';
+import { NgbDateStruct, NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MatRadioChange } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
 
-
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    closeResult: string;
+  public basemonthval: any[] = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
-    proxyButton:any = false;
+  public baseyearval: any[] = [
+    '2010',
+    '2011',
+    '2012',
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022',
+    '2023',
+    '2024',
+    '2025',
+    '2026',
+    '2027',
+    '2028',
+    '2029',
+    '2030',
+    '2031',
+    '2032',
+    '2033',
+    '2034'
+  ];
 
-    public RejectDirName: any[] = ['ascend', 'ascend_lite',
-        'atg', 's99grp', 'sbcs'
-    ];
-    public OutputDirName: any[] = ['ascend', 'ascend_lite',
-        'atg', 's99grp', 'sbcs'
-    ];
+  BaseMonth: any = '01';
+  BaseYear: any = '2019';
 
-    public winbeforeappln: any[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-    public winafterappln: any[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-    public performancewin: any[] = ['6','12','18','24'];
-    public badefinition: any[] = ['0 DPD', '0-30 DPD', '31-60 DPD', '61-90 DPD', '90+ DPD (BK, CO)'];
+  req_base_month: boolean = false;
+  req_base_year: boolean = false;
+  req_start_date: boolean = false;
+  req_end_date: boolean = false;
+  anArrays: any = [];
+  company: any = [];
+  Subscriberid: any = [];
+  Portfolio: any = [];
 
+  StartDate: NgbDateStruct;
+  EndDate: NgbDateStruct;
 
+  requiredall: boolean = true;
 
+  count: number = 2;
+  @ViewChild('div') div: ElementRef;
 
-    public proxy: any[] = ['Unsecured', 'secured',
-        'Auto Loan', 'Mortage', 'Home Equity', 'Credit Union', 'Mtf Loan', 'Student Loan'
-    ];
+  constructor(
+    private formBuilder: FormBuilder,
+    private homeservice: HomeService,
+    private renderer: Renderer2,
+    private toastr: ToastrService,
+    private modalService: NgbModal
+  ) {}
 
+  ngOnInit() {}
 
-    /*GENERAL*/
-    Rejectid: any = 'ascend';
-    Outputid: any = 'ascend';
-    RejectTableName: any = '';
-    OutputTableName: any = '';
-    req_reject_tablename: boolean = false;
-    req_output_tablename: boolean = false;
-    req_base_month: boolean = false;
-    req_start_date: boolean = false;
-    req_end_date: boolean = false;
-    anArrays:any=['Unsecured','secured'];
-
-
-
-    StartDate: NgbDateStruct;
-    EndDate: NgbDateStruct;
-
-
-    BaseMonth: any = '';
-    prxy1: any = 'Unsecured';
-    prxy2: any = 'secured';
-
-
-    /*Advance Settings*/
-    AdvRejectId: any = '';
-    AdvRejectDate: any = '';
-    AdvPublicrec: any = 'Y';
-    AdvCollectionrec: any = 'Y';
-    AdvHostName: any = '';
-    AdvWinBefore: any = '';
-    AdvWinAfter: any = '';
-    FilteredStartdt: any = '';
-    FilteredEnddt: any = '';
-    AdvPerformanceval: any = '';
-    AdvBadefinition: any = '';
-    advsaved: boolean = false;
-    requiredall: boolean = true;
-    count :number=2;
-
-    @ViewChild('div') div: ElementRef;
-
-
-
-    constructor(private formBuilder: FormBuilder, private homeservice: HomeService, private renderer: Renderer2, private toastr: ToastrService, private modalService: NgbModal) {}
-
-    ngOnInit() {
-
+  onChange(event: any) {
+    if (event != '') {
+      this.requiredall = false;
+    } else {
+      this.requiredall = true;
     }
-
-    onChange(event: any) {
-        if (event != '') {
-            this.requiredall = false;
-        } else {
-            this.requiredall = true;
-
-        }
-    }
-
-    addElement() {
-        const div: HTMLParagraphElement = this.renderer.createElement('p');
-        div.innerHTML = "<select id='reject-select' class='form-control inpt-cmn'  [(ngModel)]='Rejectid' ><option *ngFor='let rejedir of RejectDirName' [value]='rejedir'>{{rejedir}}</option></select>"
-        this.renderer.appendChild(this.div.nativeElement, div);
-    }
-
-    AdvancedSetting(content: any) {
-        this.modalService.open(content, {
-            backdrop: 'static',
-            keyboard: false,
-            ariaLabelledBy: 'modal-basic-title',
-            windowClass: "AdvcnModal"
-        }).result.then((result) => {
-            this.closeResult = `Closed with: ${result}`;
-        }, (reason) => {
-            //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        });
-    }
-
-    closemodal() {
-        this.modalService.dismissAll();
-            this.AdvRejectId = '';
-            this.AdvRejectDate ='';
-            this.AdvHostName ='';
-            this.AdvWinBefore ='';
-            this.AdvWinAfter ='';
-            this.AdvPerformanceval ='';
-            this.AdvBadefinition ='';
-    }
-
-    savemodal() {
-        this.modalService.dismissAll();
-        this.advsaved = true;
-        this.toastr.success('Settings saved successfully!', 'Advanced settings');
-
-    }
-    radiopublicChange(event: any) {
-
-    }
-    radiocollectionChange(event: any) {
-
-    }
-
-
-   Addproxy(){
-
-        this.count = this.count + 1;
-
-        if(this.count == 3){
-           this.anArrays.push('Auto Loan');
-        }
-        else if(this.count == 4){
-           this.anArrays.push('Mortage');
-        }
-        else if(this.count == 5){
-           this.anArrays.push('Home Equity');
-        }
-        else if(this.count == 6){
-           this.anArrays.push('Credit Union');
-        }
-          else if(this.count == 7){
-           this.anArrays.push('Mtf Loan');
-        }
-       else if(this.count == 8){
-           this.anArrays.push('Student Loan');
-        }
-       
-
-        if(this.count == 8){
-          this.proxyButton = true;
-        }
-        else{
-          this.proxyButton = false;
-        }
-   }
-
-OnSelectchange(index:any){
-  
-for(let i = 0;i<this.anArrays.length;i++){
-  if(i != index){
-  if(this.anArrays[index] == this.anArrays[i]){
-    this.anArrays[i] = ''
-    return
   }
-}
-}
-}
-    Removeproxys(i:any) {
-        this.count = this.count - 1;
-        this.anArrays.splice(i, 1);
-        if(this.count == 8){
-          this.proxyButton = true;
-        }
-        else{
-          this.proxyButton = false;
-        }
-       }
-    Submit() {
 
-        if (this.RejectTableName != '') {
-            this.req_reject_tablename = false;
-        } else {
-            this.req_reject_tablename = true;
-        }
+  Addproxy() {
+    this.count = this.count + 1;
 
-        if (this.OutputTableName != '') {
-            this.req_output_tablename = false;
-        } else {
-            this.req_output_tablename = true;
-        }
-        if (this.BaseMonth != '') {
-            this.req_base_month = false;
-        } else {
-            this.req_base_month = true;
-        }
-        if (this.StartDate) {
-            this.req_start_date = false;
-        } else {
-            this.req_start_date = true;
-        }
-        if (this.EndDate) {
-            this.req_end_date = false;
-        } else {
-            this.req_end_date = true;
-        }
+    this.anArrays.push(this.anArrays[this.count]);
+  }
 
-
-        if (this.StartDate) {
-            this.FilteredStartdt = this.StartDate.year + '-' + this.StartDate.month + '-' + this.StartDate.day;
-        }
-
-        if (this.EndDate) {
-            this.FilteredEnddt = this.EndDate.year + '-' + this.EndDate.month + '-' + this.EndDate.day;
-        }
-        var proxyobj = {};
-       for (var i = 0 ; i < this.anArrays.length; i++) {
-      proxyobj["proxy" + (i+1)] = this.anArrays[i];
-          }
-
-        //console.log(proxyobj);
-
-        if (this.RejectTableName && this.OutputTableName && this.StartDate && this.EndDate && this.BaseMonth) {
-            let data: any = {
-                reject_table_name: this.RejectTableName,
-                reject_directory_col: this.Rejectid,
-                output_table_name: this.OutputTableName,
-                output_directory_name: this.Outputid,
-                start_date: this.FilteredStartdt,
-                end_date: this.FilteredEnddt,
-                base_month: this.BaseMonth,
-                proxy:proxyobj,
-                adv_reject_unique_id:this.AdvRejectId,
-                adv_reject_date_col:this.AdvRejectDate,
-                adv_public_rec:this.AdvPublicrec,
-                adv_collection_rec:this.AdvCollectionrec,
-                adv_host_name:this.AdvHostName,
-                adv_before_appln:this.AdvWinBefore,
-                adv_after_appln:this.AdvWinAfter,
-                adv_performance_win:this.AdvPerformanceval,
-                adv_bad_def:this.AdvBadefinition,
-            }
-                        console.log(data);
-            this.homeservice.GenerateQuery(data).subscribe((apiresponse: any) => {
-                if (apiresponse.query == "Success") {
-                    this.toastr.success('Data Saved Successfully !', 'Success');
-                } else {}
-
-            })
-
-        } else {
-            this.toastr.error('Please Fill out all fields!', 'Warning');
-
-        }
+  Removeproxys(i: any) {
+    this.count = this.count - 1;
+    this.anArrays.splice(i, 1);
+  }
+  Submit() {
+    if (this.BaseMonth != '') {
+      this.req_base_month = false;
+    } else {
+      this.req_base_month = true;
     }
+    if (this.BaseYear != '') {
+      this.req_base_year = false;
+    } else {
+      this.req_base_year = true;
+    }
+    if (this.StartDate) {
+      this.req_start_date = false;
+    } else {
+      this.req_start_date = true;
+    }
+    if (this.EndDate) {
+      this.req_end_date = false;
+    } else {
+      this.req_end_date = true;
+    }
+
+    var compnayobj = {};
+    var subcriberobj = {};
+    var portfilioobj = {};
+
+    for (var i = 0; i < this.anArrays.length; i++) {
+      compnayobj['company' + (i + 1)] = this.company[i];
+      subcriberobj['subcriberid' + (i + 1)] = this.Subscriberid[i];
+      portfilioobj['portfilioid' + (i + 1)] = this.Portfolio[i];
+    }
+
+    if (this.StartDate && this.EndDate && this.BaseMonth && this.BaseYear) {
+      let data: any = {
+        start_date: this.StartDate,
+        end_date: this.EndDate,
+        base_month: this.BaseMonth,
+        base_year: this.BaseYear,
+        company: compnayobj,
+        subcriberid: subcriberobj,
+        portfilioid: portfilioobj
+      };
+      console.log(data);
+      this.homeservice.GenerateQuery(data).subscribe((apiresponse: any) => {
+        if (apiresponse.query == 'Success') {
+          this.toastr.success('Data Saved Successfully !', 'Success');
+        } else {
+        }
+      });
+    } else {
+      this.toastr.error('Please Fill out all fields!', 'Warning');
+    }
+  }
 }

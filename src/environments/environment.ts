@@ -8,7 +8,7 @@
 export const environment = {
   production: false,
   version: 1 + '-dev',
-  serverUrl: 'http://192.168.56.1:8000/',
+  serverUrl: 'http://192.168.56.1:4200/',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR']
 };

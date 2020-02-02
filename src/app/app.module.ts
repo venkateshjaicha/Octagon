@@ -17,7 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -33,12 +32,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-    positionClass:'toast-top-right', 
-    progressBar:true,
-    progressAnimation:'increasing',
-    timeOut: 3000,
+      positionClass: 'toast-top-right',
+      progressBar: true,
+      progressAnimation: 'increasing',
+      timeOut: 3000
     }),
-    AppRoutingModule, // must be imported as the last module as it contains the fallback route
+    AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
   providers: [],
