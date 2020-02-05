@@ -3,6 +3,40 @@
     <div class="card-body">
       <div class="row content-div">
         <div class="col-md-12 text-center">
+          <h5 class="divheader">Fico Table Information</h5>
+        </div>
+        <div class="col-md-3 margin-left">
+          <label class="custom-lbl">Directory Name</label>
+
+          <select
+            id="reject-select"
+            class="form-control inpt-cmn"
+            placeholder="Select Directory"
+            (change)="dirtablechange()"
+            [(ngModel)]="Outputtbl"
+          >
+            <option *ngFor="let dir of DirName">
+              {{ dir }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3 margin-left">
+          <label class="custom-lbl">Table Name</label>
+          <select
+            id="reject-select"
+            class="form-control inpt-cmn"
+            placeholder="Select Directory"
+            [(ngModel)]="outputemodel"
+          >
+            <option *ngFor="let tbl of Tablename">
+              {{ tbl }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row content-div">
+        <div class="col-md-12 text-center">
           <h5 class="divheader">Date Information</h5>
         </div>
         <div class="col-md-2.2 margin-left">

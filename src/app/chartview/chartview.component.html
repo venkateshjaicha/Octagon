@@ -1,0 +1,142 @@
+<div class="col-md-12" style="margin-left: 1vw;">
+  <div class="row">
+    <div class="col-md-6" style="padding-top: 2vw;">
+      <mat-card class="threat-detection-cart">
+        <mat-card-title class="sec-head">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;font-weight: 500;">
+              Bad Capture 10 %
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content style="padding-bottom: 1vw;">
+          <div style="display: block;">
+            <canvas
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [colors]="barChartColors"
+              [chartType]="barChartType"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6" style="padding-top: 2vw;">
+      <mat-card class="threat-detection-cart">
+        <mat-card-title class="sec-head">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;font-weight: 500;">
+              Gini
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content style="padding-bottom: 1vw;">
+          <div style="display: block;">
+            <canvas
+              baseChart
+              [datasets]="barChartData1"
+              [labels]="barChartLabels1"
+              [options]="barChartOptions1"
+              [plugins]="barChartPlugins1"
+              [legend]="barChartLegend1"
+              [colors]="barChartColors"
+              [chartType]="barChartType1"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" style="padding-top: 2vw;">
+      <mat-card class="threat-detection-cart">
+        <mat-card-title class="sec-head">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;font-weight: 500;">
+              KS / Good-Bad MOD
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content style="padding-bottom: 1vw;">
+          <div style="display: block;">
+            <canvas
+              baseChart
+              [datasets]="barChartData2"
+              [labels]="barChartLabels2"
+              [options]="barChartOptions2"
+              [plugins]="barChartPlugins2"
+              [legend]="barChartLegend2"
+              [colors]="barChartColors"
+              [chartType]="barChartType2"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="col-md-6" style="padding-top: 2vw;">
+      <mat-card class="threat-detection-cart">
+        <mat-card-title class="sec-head">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;font-weight: 500;">
+              Bad Capture 20%
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content style="padding-bottom: 1vw;">
+          <div style="display: block;">
+            <canvas
+              baseChart
+              [datasets]="barChartData4"
+              [labels]="barChartLabels4"
+              [options]="barChartOptions4"
+              [plugins]="barChartPlugins4"
+              [legend]="barChartLegend4"
+              [colors]="barChartColors"
+              [chartType]="barChartType4"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" style="padding-top: 2vw;">
+      <mat-card class="threat-detection-cart">
+        <mat-card-title class="sec-head">
+          <div class="row">
+            <div class="col-md-12" style="text-align: center;font-weight: 500;">
+              Total Counts VS Bad Counts
+            </div>
+          </div>
+        </mat-card-title>
+        <mat-card-content style="padding-bottom: 1vw;">
+          <div style="display: block;">
+            <canvas
+              baseChart
+              [datasets]="barChartData5"
+              [labels]="barChartLabels5"
+              [options]="barChartOptions5"
+              [plugins]="barChartPlugins5"
+              [legend]="barChartLegend5"
+              [colors]="barChartColors1"
+              [chartType]="barChartType5"
+            >
+            </canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

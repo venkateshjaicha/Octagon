@@ -14,6 +14,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MatRadioChange } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -63,6 +64,23 @@ export class HomeComponent implements OnInit {
   Subscriberid: any = [];
   Portfolio: any = [];
 
+  public DirName: any[] = ['ascend', 'ascend_lite', 'atg', 's99grp'];
+  public Tablename: any = [];
+  public Outputtbl: any = 'ascend';
+
+  ascend_lite_table_name: any = ['premier_1_2', 'public_record', 'bankruptcy_plus', 'trended_3d'];
+
+  atg_table_name: any = ['inquiry_company', 'tin_company', 'trade_life_test', 'vantage_3_new'];
+
+  s99_tablename: any = [
+    'ca_prfcu_vcus_c57540a_bfs',
+    'ca_prfcu_vcus_c53012a_bfs',
+    'ca_prfcu_vcus_c62542a_bfs',
+    'ca_prfcu_vcus_c56422a_fico'
+  ];
+
+  outputemodel: any = [];
+
   StartDate: NgbDateStruct;
   EndDate: NgbDateStruct;
 
@@ -76,16 +94,30 @@ export class HomeComponent implements OnInit {
     private homeservice: HomeService,
     private renderer: Renderer2,
     private toastr: ToastrService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.Tablename = this.ascend_lite_table_name;
+  }
 
   onChange(event: any) {
     if (event != '') {
       this.requiredall = false;
     } else {
       this.requiredall = true;
+    }
+  }
+
+  dirtablechange() {
+    this.Tablename = [];
+    if (this.Outputtbl == 'ascend' || this.Outputtbl == 'ascend_lite') {
+      this.Tablename = this.ascend_lite_table_name;
+    } else if (this.Outputtbl == 'atg') {
+      this.Tablename = this.atg_table_name;
+    } else if (this.Outputtbl == 's99grp') {
+      this.Tablename = this.s99_tablename;
     }
   }
 
@@ -139,8 +171,12 @@ export class HomeComponent implements OnInit {
         base_year: this.BaseYear,
         company: compnayobj,
         subcriberid: subcriberobj,
-        portfilioid: portfilioobj
+        portfilioid: portfilioobj,
+        Directorytbl: this.Outputtbl,
+        Table: this.outputemodel
       };
+      this.router.navigate(['./chartview']);
+
       console.log(data);
       this.homeservice.GenerateQuery(data).subscribe((apiresponse: any) => {
         if (apiresponse.query == 'Success') {
