@@ -13,6 +13,7 @@ import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatRadioModule } from '@angular/material/radio';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { MatRadioModule } from '@angular/material/radio';
     NgbModule,
     MatRadioModule,
     HomeRoutingModule,
-    NgxSelectModule
+    NgxSelectModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   declarations: [HomeComponent],
   providers: [HomeService]

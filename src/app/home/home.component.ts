@@ -15,6 +15,7 @@ import { MatRadioChange } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from './home.service';
 import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   public basemonthval: any[] = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  dropdownList: any = [];
+  dropdownSettings = {};
 
   public baseyearval: any[] = [
     '2010',
@@ -97,9 +100,24 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router
   ) {}
-
   ngOnInit() {
     this.Tablename = this.ascend_lite_table_name;
+    this.dropdownList = [
+      { item_id: 'ANM', item_text: 'ANM' },
+      { item_id: 'AUA', item_text: 'AUA' },
+      { item_id: 'BAC', item_text: 'BAC' }
+    ];
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 2,
+      enableCheckAll: false,
+      allowSearchFilter: false
+    };
   }
 
   onChange(event: any) {
@@ -112,6 +130,7 @@ export class HomeComponent implements OnInit {
 
   dirtablechange() {
     this.Tablename = [];
+    this.outputemodel = [];
     if (this.Outputtbl == 'ascend' || this.Outputtbl == 'ascend_lite') {
       this.Tablename = this.ascend_lite_table_name;
     } else if (this.Outputtbl == 'atg') {

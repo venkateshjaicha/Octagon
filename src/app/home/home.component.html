@@ -1,6 +1,55 @@
 <div class="container">
   <div class="card">
     <div class="card-body">
+      <div class="row content-div" style="height:400px;overflow:auto;">
+        <div class="col-md-12 text-center">
+          <h5 class="divheader" style="padding-left: 130px;">
+            Client Information
+            <button type="button" class="btn advance-settingbtn" [disabled]="proxyButton" (click)="Addproxy()">
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+            </button>
+          </h5>
+        </div>
+        <ng-container *ngFor="let att of anArrays; let i = index">
+          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
+            <div class="proxy input-group">
+              <button
+                class="select-close"
+                *ngIf="i >= 1"
+                (click)="Removeproxys(i)"
+                style="top:8px;box-shadow: none;"
+                type="button"
+              ></button>
+
+              <label class="custom-lbl">Company {{ i + 1 }}</label>
+              <input type="text" required class="inpt-cmn form-control" [(ngModel)]="company[i]" />
+            </div>
+          </div>
+
+          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
+            <div class="input-group">
+              <label class="custom-lbl">Subscriber Id</label>
+              <input type="text" required class="inpt-cmn form-control" [(ngModel)]="Subscriberid[i]" />
+            </div>
+          </div>
+
+          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
+            <div class="input-group">
+              <label class="custom-lbl">Portfolio</label>&nbsp;&nbsp;
+              <ng-multiselect-dropdown
+                [placeholder]="'custom placeholder'"
+                [data]="dropdownList"
+                [(ngModel)]="Portfolio[i]"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
       <div class="row content-div">
         <div class="col-md-12 text-center">
           <h5 class="divheader">Fico Table Information</h5>
@@ -37,7 +86,21 @@
 
       <div class="row content-div">
         <div class="col-md-12 text-center">
-          <h5 class="divheader">Date Information</h5>
+          <h5 class="divheader">Trade Information</h5>
+        </div>
+        <div
+          class="col-md-4 margin-left"
+          style="padding-left: 0px;
+    font-size: 13px;"
+        >
+          <label class="custom-lbl"><b>Performance Window</b></label>
+        </div>
+        <div
+          class="col-md-4 margin-left"
+          style="padding-left: 218px;
+    font-size: 13px;"
+        >
+          <label class="custom-lbl"><b>Extract To Use</b></label>
         </div>
         <div class="col-md-2.2 margin-left">
           <div class="input-group">
@@ -114,47 +177,6 @@
             </select>
           </div>
         </div>
-      </div>
-
-      <div class="row content-div" style="height:215px;overflow:auto;">
-        <div class="col-md-12 text-center">
-          <h5 class="divheader" style="padding-left: 130px;">
-            Company Information
-            <button type="button" class="btn advance-settingbtn" [disabled]="proxyButton" (click)="Addproxy()">
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
-            </button>
-          </h5>
-        </div>
-        <ng-container *ngFor="let att of anArrays; let i = index">
-          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
-            <div class="proxy input-group">
-              <button
-                class="select-close"
-                *ngIf="i >= 1"
-                (click)="Removeproxys(i)"
-                style="top:8px;box-shadow: none;"
-                type="button"
-              ></button>
-
-              <label class="custom-lbl">Company {{ i + 1 }}</label>
-              <input type="text" required class="inpt-cmn form-control" [(ngModel)]="company[i]" />
-            </div>
-          </div>
-
-          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
-            <div class="input-group">
-              <label class="custom-lbl">Subscriber Id</label>
-              <input type="text" required class="inpt-cmn form-control" [(ngModel)]="Subscriberid[i]" />
-            </div>
-          </div>
-
-          <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
-            <div class="input-group">
-              <label class="custom-lbl">Portfolio</label>
-              <input type="text" required class="inpt-cmn form-control" [(ngModel)]="Portfolio[i]" />
-            </div>
-          </div>
-        </ng-container>
       </div>
 
       <div class="row">
