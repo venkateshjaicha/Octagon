@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
 
   public DirName: any[] = ['ascend', 'ascend_lite', 'atg', 's99grp'];
   public Tablename: any = [];
-  public Outputtbl: any = 'ascend';
+  public Outputtbl: any;
 
   ascend_lite_table_name: any = ['premier_1_2', 'public_record', 'bankruptcy_plus', 'trended_3d'];
 

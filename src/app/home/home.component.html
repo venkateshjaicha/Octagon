@@ -64,6 +64,7 @@
             (change)="dirtablechange()"
             [(ngModel)]="Outputtbl"
           >
+            <option value="">Select None</option>
             <option *ngFor="let dir of DirName">
               {{ dir }}
             </option>
