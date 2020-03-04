@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row content-div" style="height:400px;overflow:auto;">
         <div class="col-md-12 text-center">
-          <h5 class="divheader" style="padding-left: 130px;">
+          <h5 class="divheader">
             Client Information
             <button type="button" class="btn advance-settingbtn" [disabled]="proxyButton" (click)="Addproxy()">
               <i class="fa fa-plus-square" aria-hidden="true"></i>
@@ -24,6 +24,7 @@
               <label class="custom-lbl">Company {{ i + 1 }}</label>
               <input type="text" required class="inpt-cmn form-control" [(ngModel)]="company[i]" />
             </div>
+			<p *ngIf="req_company" class="text-danger error-message" translate>*This field is required</p>
           </div>
 
           <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
@@ -31,6 +32,7 @@
               <label class="custom-lbl">Subscriber Id</label>
               <input type="text" required class="inpt-cmn form-control" [(ngModel)]="Subscriberid[i]" />
             </div>
+			<p *ngIf="req_subscriber" class="text-danger error-message" translate>*This field is required</p>
           </div>
 
           <div class="col-md-3 margin-left" style="margin-bottom: 15px;">
@@ -46,6 +48,7 @@
               >
               </ng-multiselect-dropdown>
             </div>
+			<p *ngIf="req_portfolio" class="text-danger error-message" translate>*This field is required</p>
           </div>
         </ng-container>
       </div>
@@ -64,8 +67,7 @@
             (change)="dirtablechange()"
             [(ngModel)]="Outputtbl"
           >
-            <option value="">Select None</option>
-            <option *ngFor="let dir of DirName">
+		  <option *ngFor="let dir of DirName">
               {{ dir }}
             </option>
           </select>

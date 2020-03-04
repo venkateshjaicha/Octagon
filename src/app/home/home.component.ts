@@ -23,7 +23,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public basemonthval: any[] = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+  public basemonthval: any[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   dropdownList: any = [];
   dropdownSettings = {};
 
@@ -55,13 +55,16 @@ export class HomeComponent implements OnInit {
     '2034'
   ];
 
-  BaseMonth: any = '01';
+  BaseMonth: any = 'Jan';
   BaseYear: any = '2019';
 
   req_base_month: boolean = false;
   req_base_year: boolean = false;
   req_start_date: boolean = false;
   req_end_date: boolean = false;
+  req_company: boolean = false;
+  req_portfolio: boolean = false;
+  req_subscriber: boolean = false;
   anArrays: any = [];
   company: any = [];
   Subscriberid: any = [];
@@ -103,9 +106,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.Tablename = this.ascend_lite_table_name;
     this.dropdownList = [
-      { item_id: 'ANM', item_text: 'ANM' },
-      { item_id: 'AUA', item_text: 'AUA' },
-      { item_id: 'BAC', item_text: 'BAC' }
+      { item_id: 'ANM', item_text: 'All Loans' },
+      { item_id: 'AUA', item_text: 'Auto Loans' },
+      { item_id: 'BCC', item_text: 'Bank Cards' }
     ];
 
     this.dropdownSettings = {
@@ -139,10 +142,9 @@ export class HomeComponent implements OnInit {
       this.Tablename = this.s99_tablename;
     }
   }
-
+  
   Addproxy() {
     this.count = this.count + 1;
-
     this.anArrays.push(this.anArrays[this.count]);
   }
 
@@ -150,6 +152,7 @@ export class HomeComponent implements OnInit {
     this.count = this.count - 1;
     this.anArrays.splice(i, 1);
   }
+  
   Submit() {
     if (this.BaseMonth != '') {
       this.req_base_month = false;
@@ -171,8 +174,8 @@ export class HomeComponent implements OnInit {
     } else {
       this.req_end_date = true;
     }
-
-    var compnayobj = {};
+	
+	var compnayobj = {};
     var subcriberobj = {};
     var portfilioobj = {};
 
@@ -181,8 +184,29 @@ export class HomeComponent implements OnInit {
       subcriberobj['subcriberid' + (i + 1)] = this.Subscriberid[i];
       portfilioobj['portfilioid' + (i + 1)] = this.Portfolio[i];
     }
+   console.log("amal");
+   console.log(compnayobj);
+   console.log(subcriberobj);
+   console.log(portfilioobj);
+   
+    if (compnayobj=='{}') {
+	   console.log('amal');
+      this.req_company = false;
+    } else {
+      this.req_company = true;
+    }
+	if (subcriberobj!='') {
+      this.req_subscriber = false;
+    } else {
+      this.req_subscriber = true;
+    }
+	if (portfilioobj!='') {
+      this.req_portfolio = false;
+    } else {
+      this.req_portfolio = true;
+    }
 
-    if (this.StartDate && this.EndDate && this.BaseMonth && this.BaseYear) {
+    if (this.StartDate && this.EndDate && this.BaseMonth && this.BaseYear &&compnayobj && subcriberobj && portfilioobj ) {
       let data: any = {
         start_date: this.StartDate,
         end_date: this.EndDate,

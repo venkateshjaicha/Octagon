@@ -39,7 +39,7 @@ export class ChartviewComponent implements OnInit {
   public barChartPlugins: any = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [28.7, 29.23, 28.73, 29.09, 28.73, 28.55, 18.21, 13.83, 30.02, 29.14], label: '' }
+    { data: [25.54, 25.97, 25.39, 27.26, 25.25, 25.68, 16.79, 13.77, 28.12, 30.27], label: '' }
   ];
 
   public barChartOptions1: any = {
@@ -69,7 +69,7 @@ export class ChartviewComponent implements OnInit {
   public barChartPlugins1: any = [];
 
   public barChartData1: ChartDataSets[] = [
-    { data: [46.58, 48.17, 46.19, 49.75, 47.99, 48.49, 30.4, 28.74, 45.92, 50.28], label: '' }
+    { data: [52.18, 53.09, 51.99, 55.41, 53.64, 53.97, 35.65, 35.56, 52.56, 57.04], label: '' }
   ];
 
   public barChartOptions2: any = {
@@ -99,7 +99,7 @@ export class ChartviewComponent implements OnInit {
   public barChartPlugins2: any = [];
 
   public barChartData2: ChartDataSets[] = [
-    { data: [34.51, 36.91, 34.06, 36.93, 35.23, 35.6, 24.19, 27.67, 32.79, 37.79], label: '' }
+    { data: [37.6, 37.7, 36.7, 39.3, 38.6, 38.8, 26.5, 29.5, 36.5, 41.2], label: '' }
   ];
 
   public barChartOptions4: any = {
@@ -129,7 +129,7 @@ export class ChartviewComponent implements OnInit {
   public barChartPlugin4: any = [];
 
   public barChartData4: ChartDataSets[] = [
-    { data: [47.59, 48.84, 46.55, 50.91, 47.82, 48.0, 33.05, 28.37, 46.27, 48.36], label: '' }
+    { data: [42.32, 43.62, 39.88, 44.33, 41.61, 41.61, 30.56, 26.54, 44.47, 47.06], label: '' }
   ];
 
   public barChartColors: Color[] = [
@@ -207,8 +207,8 @@ export class ChartviewComponent implements OnInit {
   public barChartPlugin5: any = [];
 
   public barChartData5: ChartDataSets[] = [
-    { data: [6799, 6799, 6744, 6744, 6741, 6741, 6972, 6855, 7043, 7043], label: '', stack: 'a' },
-    { data: [561, 561, 550, 550, 550, 550, 593, 564, 603, 604], label: '', stack: 'b' }
+    { data:  [8171, 8064, 8111, 8111, 8109, 8109, 8364, 8262, 8460, 8459], label: '', stack: 'a' },
+    { data: [596, 596, 584, 584, 584, 584, 635, 608, 647, 648], label: '', stack: 'b' }
   ];
 
   constructor() {}
